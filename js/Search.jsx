@@ -11,6 +11,11 @@ class Search extends Component {
     this.setState({ searchTerm: event.target.value });
   };
 
+  doesShowMatchSearchTerm = (showTitle, showDescription) =>
+    `${showTitle} ${showDescription}`
+      .toUpperCase()
+      .indexOf(this.state.searchTerm.toUpperCase()) >= 0;
+
   render() {
     return (
       <div className="search">
@@ -25,11 +30,8 @@ class Search extends Component {
         </header>
         <div>
           {preload.shows
-            .filter(
-              show =>
-                `${show.title} ${show.description}`
-                  .toUpperCase()
-                  .indexOf(this.state.searchTerm.toUpperCase()) >= 0,
+            .filter(show =>
+              this.doesShowMatchSearchTerm(show.title, show.description),
             )
             .map(show => <ShowCard key={show.imdbID} {...show} />)}
         </div>
