@@ -19,6 +19,16 @@ const App = () => (
           path="/search"
           component={props => <Search shows={preload.shows} {...props} />}
         />
+        <Route
+          path="/details/:id"
+          component={(props: { match: Match }) => {
+            const show = preload.shows.find(
+              show => props.match.params.id === show.imdbID,
+            );
+
+            return <Details show={show} {...props} />;
+          }}
+        />
         <Route component={FileNotFound} />
       </Switch>
     </div>
