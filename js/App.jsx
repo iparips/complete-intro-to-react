@@ -23,7 +23,7 @@ const App = () => (
           path="/details/:id"
           component={(props: { match: Match }) => {
             const show = preload.shows.find(
-              show => props.match.params.id === show.imdbID,
+              s => props.match.params.id === s.imdbID,
             );
 
             return <Details show={show} {...props} />;
