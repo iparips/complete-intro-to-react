@@ -1,12 +1,16 @@
 // @flow
 
 import React, { Component } from "react";
-import preload from "../data.json";
 import ShowCard from "./ShowCard";
 
 class Search extends Component {
   state = {
     searchTerm: "",
+  };
+
+  // Props type declaration
+  props: {
+    shows: Array<Show>,
   };
 
   handleSearchTermChange = (
@@ -33,7 +37,7 @@ class Search extends Component {
           />
         </header>
         <div>
-          {preload.shows
+          {this.props.shows
             .filter(show =>
               this.doesShowMatchSearchTerm(show.title, show.description),
             )
