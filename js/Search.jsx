@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from "react";
 import preload from "../data.json";
 import ShowCard from "./ShowCard";
@@ -7,11 +9,13 @@ class Search extends Component {
     searchTerm: "",
   };
 
-  handleSearchTermChange = event => {
+  handleSearchTermChange = (
+    event: KeyboardEvent & { target: HTMLInputElement },
+  ) => {
     this.setState({ searchTerm: event.target.value });
   };
 
-  doesShowMatchSearchTerm = (showTitle, showDescription) =>
+  doesShowMatchSearchTerm = (showTitle: string, showDescription: string) =>
     `${showTitle} ${showDescription}`
       .toUpperCase()
       .indexOf(this.state.searchTerm.toUpperCase()) >= 0;
