@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = (props: { showSearch?: boolean }) => {
+const Header = (props: {
+  showSearch?: boolean,
+  handleSearchTermChange?: Function,
+  searchTerm?: string,
+}) => {
   let utilSpace;
 
   if (props.showSearch) {
     utilSpace = (
       <input
-        onChange={this.handleSearchTermChange}
-        value={this.state.searchTerm}
+        onChange={props.handleSearchTermChange}
+        value={props.searchTerm}
         type="text"
         placeholder="Search"
       />
@@ -33,6 +37,8 @@ const Header = (props: { showSearch?: boolean }) => {
 
 Header.defaultProps = {
   showSearch: false,
+  handleSearchTermChange: function noop(){},
+  searchTerm: "",
 };
 
 export default Header;
